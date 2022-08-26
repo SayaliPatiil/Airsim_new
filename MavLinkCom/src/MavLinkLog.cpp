@@ -160,7 +160,7 @@ bool MavLinkFileLog::read(mavlinkcom::MavLinkMessage& msg, uint64_t& timestamp)
 
         size_t s = fread(&time, 1, sizeof(uint64_t), ptr_);
         if (s < sizeof(uint64_t)) {
-            int hr = errno;
+            
             return false;
         }
 
@@ -197,10 +197,10 @@ bool MavLinkFileLog::read(mavlinkcom::MavLinkMessage& msg, uint64_t& timestamp)
             uint8_t msgid = 0;
             s = fread(&msgid, 1, 1, ptr_);
             msg.msgid = msgid;
-            s = fread(&msgid, 1, 1, ptr_);
+           
             msg.msgid |= (msgid << 8);
             s = fread(&msgid, 1, 1, ptr_);
-            msg.msgid |= (msgid << 16);
+           
         }
 
         if (s < 1) {
